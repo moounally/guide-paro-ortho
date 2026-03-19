@@ -6,7 +6,7 @@ import { Download, ExternalLink, Quote } from "lucide-react";
 const citations = [
   {
     id: 1,
-    text: "Ounally Z., Dridi I. (2026). Impact des dispositifs orthodontiques sur la santé parodontale : aligneurs transparents versus systèmes multi-attachés — revue systématique de la littérature. Thèse de doctorat en médecine dentaire, Univ. Monastir.",
+    text: "Ounally Z., Dalloul I. (2026). Impact des dispositifs orthodontiques sur la santé parodontale : aligneurs transparents versus systèmes multi-attachés — revue systématique de la littérature. Thèse de doctorat en médecine dentaire, Univ. Monastir.",
     link: "#",
     type: "Thèse Principale (2026)",
   },

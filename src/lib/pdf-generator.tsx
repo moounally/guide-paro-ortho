@@ -85,7 +85,7 @@ export const ClinicalPDF = ({ data }: { data?: unknown }) => (
       
       <View style={styles.header}>
         <Text style={styles.title}>Dossier Parodonto-Orthodontique</Text>
-        <Text style={styles.subtitle}>Ounally Z. & Dridi I. (2026) — Protocole Tunisie</Text>
+        <Text style={styles.subtitle}>Ounally Z. & Dalloul I. (2026) — Protocole Tunisie</Text>
       </View>
       
       <View style={styles.section}>
@@ -126,7 +126,7 @@ export const ClinicalPDF = ({ data }: { data?: unknown }) => (
 
       <View style={styles.footer}>
         <Text>Document à usage clinique — Non contractuel</Text>
-        <Text>Basé sur 22 études PRISMA · Ounally & Dridi, 2026</Text>
+        <Text>Basé sur 22 études PRISMA · Ounally & Dalloul, 2026</Text>
         <Text>Université de Monastir, Faculté de Médecine Dentaire, Tunisie</Text>
       </View>
     </Page>

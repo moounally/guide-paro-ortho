@@ -11,7 +11,7 @@ const forestData = [
   { id: "Borda et al.", year: 2020, md: -0.55, ci_low: -0.80, ci_high: -0.30, weight: 18 },
   { id: "Zhang et al.", year: 2023, md: -0.75, ci_low: -1.05, ci_high: -0.45, weight: 12 },
   { id: "Alassiry", year: 2023, md: -0.30, ci_low: -0.60, ci_high: 0.00, weight: 10 },
-  { id: "Ounally & Dridi", year: 2026, md: -0.52, ci_low: -0.65, ci_high: -0.39, weight: 25 },
+  { id: "Ounally & Dalloul", year: 2026, md: -0.52, ci_low: -0.65, ci_high: -0.39, weight: 25 },
 ];
 
 export function ForestPlot() {
