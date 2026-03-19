@@ -20,7 +20,7 @@ export function PatientHeader() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b border-sapphire-50/50">
         <div>
           <h2 className="text-2xl font-display font-bold text-sapphire-900">Identification Patient</h2>
-          <p className="text-sm text-sapphire-700/80">Renseignez les informations avant l'évaluation clinique.</p>
+          <p className="text-sm text-sapphire-700/80">Renseignez les informations avant l&apos;évaluation clinique.</p>
         </div>
         <div className="mt-4 md:mt-0">
           <button 

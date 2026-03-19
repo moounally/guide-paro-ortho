@@ -32,9 +32,8 @@ export function PrintButton() {
           fileName="dossier-paro-ortho.pdf"
           className="inline-flex items-center gap-2 bg-sapphire-900 hover:bg-sapphire-700 text-white-pure px-6 py-3 rounded-full font-medium transition-colors shadow-sm"
         >
-          {/* @ts-ignore : react-pdf child typing quirk */}
           {({ loading }) => (
-            <>
+             <>
               <Download className="w-5 h-5" />
               {loading ? "Génération PDF..." : "Télécharger PDF Officiel"}
             </>

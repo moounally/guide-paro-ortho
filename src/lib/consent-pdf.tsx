@@ -68,29 +68,29 @@ export const ConsentementPDF = () => (
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
         <Text style={styles.titleFR}>CONSENTEMENT ÉCLAIRÉ EN PARODONTO-ORTHODONTIE</Text>
-        <Text style={{ fontSize: 10, color: '#7A6208', marginTop: 10 }}>Conforme aux directives de l'Ordre National des Médecins Dentistes de Tunisie (ONDT)</Text>
+        <Text style={{ fontSize: 10, color: '#7A6208', marginTop: 10 }}>Conforme aux directives de l&apos;Ordre National des Médecins Dentistes de Tunisie (ONDT)</Text>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.paragraph}>
-          Je soussigné(e), M/Mme _____________________________________, certifie avoir été informé(e) par mon médecin dentiste traitant de l'état de mon parodonte (gencives et os) avant le début du traitement orthodontique.
+          Je soussigné(e), M/Mme _____________________________________, certifie avoir été informé(e) par mon médecin dentiste traitant de l&apos;état de mon parodonte (gencives et os) avant le début du traitement orthodontique.
         </Text>
         <Text style={styles.paragraph}>
-          Il m'a été clairement expliqué que le déplacement des dents comporte des risques parodontaux inhérents, notamment :
+          Il m&apos;a été clairement expliqué que le déplacement des dents comporte des risques parodontaux inhérents, notamment :
         </Text>
         <View style={styles.list}>
-          <Text style={styles.listItem}>• L'apparition ou l'aggravation de récessions gingivales (déchaussement).</Text>
-          <Text style={styles.listItem}>• L'inflammation gingivale en cas de contrôle de plaque insuffisant.</Text>
-          <Text style={styles.listItem}>• La perte d'attache osseuse ou la résorption radiculaire.</Text>
+          <Text style={styles.listItem}>• L&apos;apparition ou l&apos;aggravation de récessions gingivales (déchaussement).</Text>
+          <Text style={styles.listItem}>• L&apos;inflammation gingivale en cas de contrôle de plaque insuffisant.</Text>
+          <Text style={styles.listItem}>• La perte d&apos;attache osseuse ou la résorption radiculaire.</Text>
         </View>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.paragraph}>
-          Mon médecin m'a recommandé un dispositif spécifique (Aligneurs transparents ou Multi-attaches) en fonction de mon biotype parodontal et de mon indice de risque (Score Paro-Ortho).
+          Mon médecin m&apos;a recommandé un dispositif spécifique (Aligneurs transparents ou Multi-attaches) en fonction de mon biotype parodontal et de mon indice de risque (Score Paro-Ortho).
         </Text>
         <Text style={styles.paragraph}>
-          Je m'engage à respecter de manière stricte les consignes d'hygiène bucco-dentaire et à honorer tous les rendez-vous de maintenance parodontologique durant la période active de mon traitement interceptif ou correctif.
+          Je m&apos;engage à respecter de manière stricte les consignes d&apos;hygiène bucco-dentaire et à honorer tous les rendez-vous de maintenance parodontologique durant la période active de mon traitement interceptif ou correctif.
         </Text>
       </View>
 

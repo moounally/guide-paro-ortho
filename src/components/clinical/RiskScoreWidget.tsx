@@ -148,7 +148,7 @@ export function RiskScoreWidget() {
           </div>
 
           <div className="mb-6">
-            <ClinicalBadge level={details.color as any} className="px-4 py-1.5 text-sm uppercase animate-pulse">
+            <ClinicalBadge level={details.color as "neutral" | "success" | "warning" | "danger"} className="px-4 py-1.5 text-sm uppercase animate-pulse">
               {details.label}
             </ClinicalBadge>
           </div>

@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
 });
 
 // Document Component
-export const ClinicalPDF = ({ data }: { data?: any }) => (
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const ClinicalPDF = ({ data }: { data?: unknown }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.watermark}>CONFIDENTIEL MÉDICAL</Text>
