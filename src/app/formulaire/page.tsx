@@ -3,8 +3,11 @@ import { RiskScoreWidget } from "@/components/clinical/RiskScoreWidget";
 import { DecisionTree } from "@/components/clinical/DecisionTree";
 import { MonitoringGrid } from "@/components/clinical/MonitoringGrid";
 import { PatientHeader } from "@/components/clinical/PatientHeader";
-import { PrintButton } from "@/components/ui/PrintButton";
+import dynamic from "next/dynamic";
 import { Stethoscope, Activity, Network, ListChecks } from "lucide-react";
+
+// @react-pdf/renderer pose problème lors du build SSR Next.js
+const PrintButton = dynamic(() => import("@/components/ui/PrintButton").then(mod => mod.PrintButton), { ssr: false });
 
 export default function Formulaire() {
   return (
