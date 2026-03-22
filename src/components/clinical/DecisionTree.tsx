@@ -109,8 +109,8 @@ export function DecisionTree() {
             {/* CONNECTEUR 1 -> 2 */}
             <div className="w-full max-w-2xl flex relative h-16 justify-center">
                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M 50 0 L 25 100" stroke={isEdgeActive('start', 'sain') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('start', 'sain') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
-                  <path d="M 50 0 L 75 100" stroke={isEdgeActive('start', 'paro') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('start', 'paro') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
+                  <path d="M 50 0 L 25 100" stroke={isEdgeActive('start', 'sain') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('start', 'sain') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
+                  <path d="M 50 0 L 75 100" stroke={isEdgeActive('start', 'paro') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('start', 'paro') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
                </svg>
             </div>
             
@@ -123,9 +123,9 @@ export function DecisionTree() {
             {/* CONNECTEUR 2 -> 3 */}
             <div className="w-full max-w-3xl flex relative h-16 justify-center">
                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M 21 0 L 21 100" stroke={isEdgeActive('sain', 'ortho_standard') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('sain', 'ortho_standard') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
-                  <path d="M 79 0 L 50 100" stroke={isEdgeActive('paro', 'active') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('paro', 'active') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
-                  <path d="M 79 0 L 95 100" stroke={isEdgeActive('paro', 'stabile') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('paro', 'stabile') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
+                  <path d="M 21 0 L 21 100" stroke={isEdgeActive('sain', 'ortho_standard') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('sain', 'ortho_standard') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
+                  <path d="M 79 0 L 50 100" stroke={isEdgeActive('paro', 'active') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('paro', 'active') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
+                  <path d="M 79 0 L 95 100" stroke={isEdgeActive('paro', 'stabile') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('paro', 'stabile') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
                </svg>
             </div>
 
@@ -139,8 +139,8 @@ export function DecisionTree() {
             {/* CONNECTEUR 3 -> 4 */}
             <div className="w-full max-w-3xl flex relative h-16 justify-center">
                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M 50 0 L 50 100" stroke={isEdgeActive('active', 'stop') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('active', 'stop') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
-                  <path d="M 90 0 L 90 100" stroke={isEdgeActive('stabile', 'ortho_aligneurs') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('stabile', 'ortho_aligneurs') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
+                  <path d="M 50 0 L 50 100" stroke={isEdgeActive('active', 'stop') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('active', 'stop') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
+                  <path d="M 90 0 L 90 100" stroke={isEdgeActive('stabile', 'ortho_aligneurs') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('stabile', 'ortho_aligneurs') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
                </svg>
             </div>
 
@@ -153,8 +153,8 @@ export function DecisionTree() {
             {/* CONNECTEUR Espacement vers Mid-EVAL (les lignes croisées continuent) */}
             <div className="w-full max-w-3xl flex relative h-16 justify-center">
                <svg className="absolute top-[-64px] inset-x-0 w-full h-[128px]" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M 21 0 L 35 100" stroke={isEdgeActive('ortho_standard', 'mid_eval') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('ortho_standard', 'mid_eval') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
-                  <path d="M 85 0 L 65 100" stroke={isEdgeActive('ortho_aligneurs', 'mid_eval') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('ortho_aligneurs', 'mid_eval') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
+                  <path d="M 21 0 L 35 100" stroke={isEdgeActive('ortho_standard', 'mid_eval') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('ortho_standard', 'mid_eval') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
+                  <path d="M 85 0 L 65 100" stroke={isEdgeActive('ortho_aligneurs', 'mid_eval') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('ortho_aligneurs', 'mid_eval') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
                </svg>
             </div>
 
@@ -166,8 +166,8 @@ export function DecisionTree() {
             {/* CONNECTEUR 5 -> 6 */}
             <div className="w-full max-w-lg flex relative h-16 justify-center">
                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M 50 0 L 25 100" stroke={isEdgeActive('mid_eval', 'mid_ok') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('mid_eval', 'mid_ok') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
-                  <path d="M 50 0 L 75 100" stroke={isEdgeActive('mid_eval', 'mid_inflam') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('mid_eval', 'mid_inflam') ? "none" : "4 4"} fill="none" className="transition-all duration-500" />
+                  <path d="M 50 0 L 25 100" stroke={isEdgeActive('mid_eval', 'mid_ok') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('mid_eval', 'mid_ok') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
+                  <path d="M 50 0 L 75 100" stroke={isEdgeActive('mid_eval', 'mid_inflam') ? "#B8960C" : "#CBD5E1"} strokeWidth="2" strokeDasharray={isEdgeActive('mid_eval', 'mid_inflam') ? "none" : "4 4"} fill="none" className="transition-all duration-500" vectorEffect="non-scaling-stroke" />
                </svg>
             </div>
 

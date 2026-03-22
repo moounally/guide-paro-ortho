@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { ClinicalPDF } from "@/lib/pdf-generator";
-import { Printer, Download } from "lucide-react";
+import { Printer } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function PrintButton() {
   const [isClient, setIsClient] = useState(false);
@@ -16,30 +14,15 @@ export function PrintButton() {
     window.print();
   };
 
-  return (
-    <div className="flex gap-4 no-print flex-wrap justify-center sm:justify-start">
-      <button
-        onClick={handlePrint}
-        className="inline-flex items-center gap-2 bg-sapphire-100/50 hover:bg-sapphire-100 text-sapphire-900 border border-sapphire-200 px-6 py-3 rounded-full font-medium transition-colors"
-      >
-        <Printer className="w-5 h-5" />
-        Imprimer (Dossier Actuel)
-      </button>
+  if (!isClient) return null;
 
-      {isClient && (
-        <PDFDownloadLink
-          document={<ClinicalPDF />}
-          fileName="dossier-paro-ortho.pdf"
-          className="inline-flex items-center gap-2 bg-sapphire-900 hover:bg-sapphire-700 text-white-pure px-6 py-3 rounded-full font-medium transition-colors shadow-sm"
-        >
-          {({ loading }) => (
-             <>
-              <Download className="w-5 h-5" />
-              {loading ? "Génération PDF..." : "Télécharger PDF Officiel"}
-            </>
-          )}
-        </PDFDownloadLink>
-      )}
-    </div>
+  return (
+    <button
+      onClick={handlePrint}
+      className="inline-flex items-center gap-3 px-8 py-4 bg-sapphire-900 text-white-pure rounded-full font-bold hover:bg-sapphire-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+    >
+      <Printer className="w-5 h-5" />
+      Imprimer le Dossier Patient Complet
+    </button>
   );
 }

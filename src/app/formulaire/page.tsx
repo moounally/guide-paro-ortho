@@ -20,37 +20,39 @@ export default function Formulaire() {
       <div className="max-w-4xl mx-auto space-y-12">
         {/* IDENTIFICATION */}
         <PatientHeader />
-        <section className="bg-white-pure p-8 rounded-3xl border border-sapphire-100 shadow-sm relative overflow-visible">
-          <div className="absolute -top-4 -left-4 bg-sapphire-100 text-sapphire-900 p-3 rounded-2xl shadow-sm">
+        <section className="relative mt-20 pt-12 border-t border-sapphire-100/50 print:border-t-0 print:mt-8 print:pt-4">
+          <div className="absolute -top-6 left-0 bg-sapphire-100 text-sapphire-900 p-3 rounded-2xl shadow-sm print:hidden">
             <Activity className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-8 ml-8">
+          <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-8 pl-0 md:pl-16 print:pl-0">
             Phase 1 : Évaluation du Risque Initial
           </h2>
-          <RiskScoreWidget />
+          <div className="pl-0 md:pl-16 print:pl-0">
+            <RiskScoreWidget />
+          </div>
         </section>
 
-        <section className="bg-white-pure p-8 rounded-3xl border border-sapphire-100 shadow-sm relative overflow-visible mt-20">
-          <div className="absolute -top-4 -left-4 bg-sapphire-100 text-sapphire-900 p-3 rounded-2xl shadow-sm">
+        <section className="relative mt-24 pt-12 border-t border-sapphire-100/50 print:border-t-0 print:mt-12 print:pt-4 print:break-before-page">
+          <div className="absolute -top-6 left-0 bg-sapphire-100 text-sapphire-900 p-3 rounded-2xl shadow-sm print:hidden">
             <Network className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-2 ml-8">
+          <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-2 pl-0 md:pl-16 print:pl-0">
             Phase 2 : Arbre Décisionnel
           </h2>
-          <p className="text-sapphire-700/80 mb-8 ml-8 text-sm">
+          <p className="text-sapphire-700/80 mb-12 pl-0 md:pl-16 text-sm max-w-3xl print:pl-0 print:text-black">
             Naviguez à travers l'arbre pour déterminer la stratégie thérapeutique ou l'adaptation en cours de traitement (Mid-Treatment Adaptations).
           </p>
           <DecisionTree />
         </section>
 
-        <section className="bg-white-pure p-8 rounded-3xl border border-sapphire-100 shadow-sm relative overflow-hidden mt-20">
-          <div className="absolute -top-4 -left-4 bg-sapphire-100 text-sapphire-900 p-3 rounded-2xl shadow-sm z-10">
+        <section className="relative mt-24 pt-12 border-t border-sapphire-100/50 print:border-t-0 print:mt-12 print:pt-4 print:break-before-page">
+          <div className="absolute -top-6 left-0 bg-sapphire-100 text-sapphire-900 p-3 rounded-2xl shadow-sm z-10 print:hidden">
             <ListChecks className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-2 ml-8 relative z-10">
+          <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-2 pl-0 md:pl-16 relative z-10 print:pl-0">
             Phase 3 : Suivi Clinique (Monitoring)
           </h2>
-          <p className="text-sapphire-700/80 mb-8 ml-8 text-sm relative z-10">
+          <p className="text-sapphire-700/80 mb-12 pl-0 md:pl-16 text-sm max-w-3xl relative z-10 print:pl-0 print:text-black">
             Le tableau synthétise les index cliniques à chaque visite de contrôle. Tout dépassement de seuil déclenche une alerte d'adaptation.
           </p>
           <div className="relative z-10">
@@ -58,9 +60,9 @@ export default function Formulaire() {
           </div>
         </section>
 
-        <section className="pt-12 text-center pb-20">
-            <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-4">Exportation & Archivo du Dossier</h2>
-            <p className="text-neutral mb-8">Générez un PDF officiel pour les archives ou partagez-le de manière sécurisée.</p>
+        <section className="pt-20 text-center pb-20 print:hidden border-t border-sapphire-100/30">
+            <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-4">Impression Officielle du Dossier</h2>
+            <p className="text-neutral mb-8">Générez un PDF complet incluant l'arbre et le tableau en utilisant l'impression native.</p>
             <PrintButton />
         </section>
       </div>
