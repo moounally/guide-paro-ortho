@@ -174,7 +174,7 @@ export default function Home() {
       {/* 🚀 CALL TO ACTION APP */}
       <section className="w-full py-24 bg-sapphire-900 text-white-pure border-t-8 border-gold-500">
         <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-4xl font-display font-bold mb-8 flex items-center justify-center gap-4">
+          <h2 className="text-4xl font-display font-bold mb-8 flex items-center justify-center gap-4 text-white-pure">
             <Sparkles className="w-8 h-8 text-gold-500" />
             Un Outil Décisionnel Pour Votre Pratique
           </h2>

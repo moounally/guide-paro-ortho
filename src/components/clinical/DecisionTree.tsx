@@ -97,9 +97,9 @@ export function DecisionTree() {
       </div>
 
       <div className="w-full max-w-5xl mx-auto p-4 md:p-8 bg-white-pure rounded-3xl border border-sapphire-100 shadow-lg overflow-hidden">
-        {/* Conteneur défilant horizontalement pour le mobile */}
-        <div className="overflow-x-auto pb-8 custom-scrollbar pt-4">
-          <div className="min-w-[900px] flex flex-col items-center gap-0 relative z-10 px-4 mx-auto">
+        {/* Conteneur adaptatif (Vue globale sans scroll) */}
+        <div className="w-full flex justify-center pb-8 pt-4 overflow-hidden h-[350px] sm:h-[550px] lg:h-auto">
+          <div className="w-[900px] shrink-0 flex flex-col items-center gap-0 relative z-10 px-4 mx-auto origin-top scale-[0.35] sm:scale-[0.6] lg:scale-100 transition-transform">
             
             {/* LIGNE 1 : Bilan Paro Initial */}
             <div className="flex justify-center w-full z-10">

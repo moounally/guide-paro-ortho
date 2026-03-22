@@ -17,7 +17,7 @@ export default function Formulaire() {
         <p className="text-xl text-sapphire-700/80 max-w-2xl mx-auto">Interface clinique intégrée pour l'évaluation du risque, la décision thérapeutique et le suivi du patient sous traitement orthodontique.</p>
       </div>
       
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div id="dossier-patient-form" className="max-w-4xl mx-auto space-y-12 p-4 md:p-8 bg-white-pure rounded-3xl">
         {/* IDENTIFICATION */}
         <PatientHeader />
         <section className="relative mt-20 pt-12 border-t border-sapphire-100/50 print:border-t-0 print:mt-8 print:pt-4">
