@@ -5,11 +5,11 @@ import { MonitoringGrid } from "@/components/clinical/MonitoringGrid";
 import { PatientHeader } from "@/components/clinical/PatientHeader";
 import dynamic from "next/dynamic";
 import { Stethoscope, Activity, Network, ListChecks } from "lucide-react";
-
-// @react-pdf/renderer pose problème lors du build SSR Next.js
-const PrintButton = dynamic(() => import("@/components/ui/PrintButton").then(mod => mod.PrintButton), { ssr: false });
+import { useI18n } from "@/lib/i18n";
+import { PrintButton } from "@/components/ui/PrintButton";
 
 export default function Formulaire() {
+  const { t } = useI18n();
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto mb-16 text-center">
@@ -25,7 +25,7 @@ export default function Formulaire() {
             <Activity className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-8 pl-0 md:pl-16 print:pl-0">
-            Phase 1 : Évaluation du Risque Initial
+            {t('form.phase1')}
           </h2>
           <div className="pl-0 md:pl-16 print:pl-0">
             <RiskScoreWidget />
@@ -37,7 +37,7 @@ export default function Formulaire() {
             <Network className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-2 pl-0 md:pl-16 print:pl-0">
-            Phase 2 : Arbre Décisionnel
+            {t('form.phase2')}
           </h2>
           <p className="text-sapphire-700/80 mb-12 pl-0 md:pl-16 text-sm max-w-3xl print:pl-0 print:text-black">
             Naviguez à travers l'arbre pour déterminer la stratégie thérapeutique ou l'adaptation en cours de traitement (Mid-Treatment Adaptations).
@@ -50,7 +50,7 @@ export default function Formulaire() {
             <ListChecks className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-2 pl-0 md:pl-16 relative z-10 print:pl-0">
-            Phase 3 : Suivi Clinique (Monitoring)
+            {t('form.phase3')}
           </h2>
           <p className="text-sapphire-700/80 mb-12 pl-0 md:pl-16 text-sm max-w-3xl relative z-10 print:pl-0 print:text-black">
             Le tableau synthétise les index cliniques à chaque visite de contrôle. Tout dépassement de seuil déclenche une alerte d'adaptation.
@@ -61,8 +61,8 @@ export default function Formulaire() {
         </section>
 
         <section className="pt-20 text-center pb-20 print:hidden border-t border-sapphire-100/30">
-            <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-4">Impression Officielle du Dossier</h2>
-            <p className="text-neutral mb-8">Générez un PDF complet incluant l'arbre et le tableau en utilisant l'impression native.</p>
+            <h2 className="text-2xl font-display font-semibold text-sapphire-900 mb-4">{t('export.title')}</h2>
+            <p className="text-neutral mb-8">{t('export.subtitle')}</p>
             <PrintButton />
         </section>
       </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { I18nProvider } from "@/lib/i18n";
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"], 
@@ -55,11 +56,13 @@ export default function RootLayout({
       notoSansArabic.variable
     )}>
       <body className="antialiased min-h-screen bg-background text-foreground font-body flex flex-col">
-        <Header />
-        <main className="flex-1 flex flex-col w-full">
-          {children}
-        </main>
-        <Footer />
+        <I18nProvider>
+          <Header />
+          <main className="flex-1 flex flex-col w-full">
+            {children}
+          </main>
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   );

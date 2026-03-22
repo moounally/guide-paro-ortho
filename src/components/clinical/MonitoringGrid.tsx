@@ -58,8 +58,8 @@ export function MonitoringGrid() {
 
   return (
     <div className="w-full bg-white-pure rounded-3xl border border-sapphire-100 shadow-sm overflow-hidden p-4 md:p-8">
-      <div className="w-full overflow-hidden h-[300px] sm:h-[450px] lg:h-auto pb-6">
-        <div className="w-[900px] lg:w-full origin-top-left lg:origin-top scale-[0.35] sm:scale-[0.6] lg:scale-100 transition-transform pr-4">
+      <div className="overflow-x-auto pb-6 custom-scrollbar">
+        <div className="min-w-[1000px] pr-4">
           <table className="w-full text-left border-collapse">
           <thead>
             <tr>

@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, FileText, Database, Activity, Sparkles, Stethoscope, Microscope, Focus } from "lucide-react";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { GumAnimation } from "@/components/clinical/3d/GumAnimation";
+import { useI18n } from "@/lib/i18n";
 
 export default function Home() {
+  const { t } = useI18n();
   return (
     <div className="flex flex-col min-h-screen">
       {/* 🚀 HERO SECTION */}
@@ -34,14 +36,14 @@ export default function Home() {
               variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}
               className="text-5xl md:text-7xl font-display font-bold text-sapphire-900 leading-tight mb-8"
             >
-              Orthodontie & <span className="text-transparent bg-clip-text bg-gradient-to-r from-sapphire-500 to-gold-600">Parodontie</span>
+              {t('hero.title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-sapphire-500 to-gold-600">{t('hero.title2')}</span>
             </motion.h1>
             
             <motion.p 
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}
               className="text-xl md:text-2xl text-sapphire-700/80 font-light max-w-3xl mx-auto leading-relaxed mb-12"
             >
-              Le premier guide interactif basé sur l'évidence médicale comparant l'impact parodontal des aligneurs transparents versus systèmes multi-attachés.
+              {t('hero.subtitle')}
             </motion.p>
             
             <motion.div 
@@ -49,11 +51,11 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
               <Link href="/formulaire" className="group flex items-center gap-3 bg-sapphire-900 hover:bg-sapphire-700 text-white-pure px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                Démarrer une Évaluation
+                {t('hero.cta1')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link href="/recherche" className="flex items-center gap-3 bg-white-pure hover:bg-sapphire-50 text-sapphire-900 border-2 border-sapphire-100 px-8 py-4 rounded-full font-bold text-lg transition-all">
-                Consulter les 22 Études
+                {t('hero.cta2')}
               </Link>
             </motion.div>
           </motion.div>
@@ -176,7 +178,7 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-4xl font-display font-bold mb-8 flex items-center justify-center gap-4 text-white-pure">
             <Sparkles className="w-8 h-8 text-gold-500" />
-            Un Outil Décisionnel Pour Votre Pratique
+            {t('cta.footer')}
           </h2>
           <p className="text-xl text-sapphire-100/80 mb-12 font-light leading-relaxed">
             Notre arbre décisionnel intègre des paramètres cliniques tels que le Biotype, l'Indice de Plaque et les Antécédents pour générer un protocole sur-mesure validé.
