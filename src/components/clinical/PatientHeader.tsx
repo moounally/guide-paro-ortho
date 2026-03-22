@@ -38,14 +38,14 @@ export function PatientHeader() {
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
             <User className="w-4 h-4" /> Nom complet
           </Label>
-          <Input placeholder="Ex: Jean Dupont" className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input placeholder="Ex: Flen ElFouleni" className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
         </div>
         
         <div className="space-y-2">
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
-            <FileDigit className="w-4 h-4" /> N° Dossier
+            <FileDigit className="w-4 h-4" /> CIN / N° Dossier
           </Label>
-          <Input placeholder="Ex: PO-2026-001" defaultValue="PO-2026-001" className="bg-off-white font-mono text-sm border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input placeholder="Ex: 01234567" defaultValue="01234567" className="bg-off-white font-mono text-sm border-sapphire-100 focus-visible:ring-sapphire-500" />
         </div>
 
         <div className="space-y-2">
@@ -59,7 +59,7 @@ export function PatientHeader() {
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
             <Stethoscope className="w-4 h-4" /> Praticien Traitant
           </Label>
-          <Input placeholder="Dr. Nom" className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input placeholder="Pr. Dallel" className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
         </div>
       </div>
     </div>
