@@ -11,8 +11,8 @@ function PlaqueParticles({ active }: { active: boolean }) {
   const materialRef = useRef<THREE.PointsMaterial>(null);
   
   const [positions] = useState(() => {
-    const pos = new Float32Array(150 * 3);
-    for (let i = 0; i < 150; i++) {
+    const pos = new Float32Array(50 * 3);
+    for (let i = 0; i < 50; i++) {
        const theta = Math.random() * Math.PI * 2;
        const r = 0.68 + Math.random() * 0.18;
        const y = 0.35 + Math.random() * 0.25;
@@ -58,32 +58,30 @@ function StylizedTooth({ color = "#ffffff", isAligner = false }) {
     <group ref={group} dispose={null}>
       {/* Crown */}
       <RoundedBox args={[1.4, 1.2, 1.4]} position={[0, 1, 0]} radius={0.3} smoothness={4} castShadow>
-        <meshPhysicalMaterial color={color} roughness={0.15} clearcoat={1.0} clearcoatRoughness={0.1} metalness={0.05} />
+        <meshStandardMaterial color={color} roughness={0.2} metalness={0.1} />
       </RoundedBox>
       
       {/* Root 1 */}
       <mesh position={[-0.35, -0.2, 0]} rotation={[0, 0, 0.1]} castShadow>
         <cylinderGeometry args={[0.3, 0.1, 1.5, 32]} />
-        <meshPhysicalMaterial color={color} roughness={0.25} clearcoat={0.5} clearcoatRoughness={0.2} />
+        <meshStandardMaterial color={color} roughness={0.3} />
       </mesh>
       
       {/* Root 2 */}
       <mesh position={[0.35, -0.2, 0]} rotation={[0, 0, -0.1]} castShadow>
         <cylinderGeometry args={[0.3, 0.1, 1.5, 32]} />
-        <meshPhysicalMaterial color={color} roughness={0.25} clearcoat={0.5} clearcoatRoughness={0.2} />
+        <meshStandardMaterial color={color} roughness={0.3} />
       </mesh>
       
       {/* Optional Aligner Shell representing transparent aligners */}
       {isAligner && (
         <RoundedBox args={[1.45, 1.25, 1.45]} position={[0, 1, 0]} radius={0.32} smoothness={4}>
-          <meshPhysicalMaterial 
+          <meshStandardMaterial 
             color="#ffffff" 
-            transmission={0.95} 
-            opacity={1} 
+            opacity={0.3} 
             transparent
-            roughness={0.05} 
-            ior={1.5} 
-            thickness={0.1} 
+            roughness={0.1} 
+            metalness={0.2}
           />
         </RoundedBox>
       )}
@@ -159,9 +157,9 @@ interface ToothSceneProps {
 export function ToothScene({ state = 'healthy', isAligner = true }: ToothSceneProps) {
   return (
     <div className="w-full h-full min-h-[400px] bg-gradient-to-b from-sky-50 to-white relative rounded-2xl overflow-hidden shadow-inner border border-sapphire-100/50">
-      <Canvas camera={{ position: [0, 3, 8.5], fov: 42 }} shadows>
+      <Canvas camera={{ position: [0, 3, 8.5], fov: 42 }} shadows dpr={[1, 1.5]}>
         <ambientLight intensity={0.7} />
-        <directionalLight position={[10, 10, 5]} intensity={1.8} castShadow shadow-mapSize={[2048, 2048]} shadow-normalBias={0.06} shadow-bias={-0.0001} />
+        <directionalLight position={[10, 10, 5]} intensity={1.8} castShadow shadow-mapSize={[512, 512]} shadow-normalBias={0.06} shadow-bias={-0.001} />
         <directionalLight position={[-10, 5, -5]} intensity={0.6} />
         <Environment preset="city" />
         
@@ -171,7 +169,7 @@ export function ToothScene({ state = 'healthy', isAligner = true }: ToothScenePr
           <PlaqueParticles active={state === 'inflamed'} />
         </Float>
         
-        <ContactShadows position={[0, -1.8, 0]} opacity={0.6} scale={12} blur={2.5} far={4} color="#041E4D" />
+        <ContactShadows position={[0, -1.8, 0]} opacity={0.6} scale={12} blur={2.5} far={4} color="#041E4D" resolution={256} frames={1} />
         <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 1.5} minPolarAngle={Math.PI / 4} autoRotate autoRotateSpeed={0.8} />
       </Canvas>
     </div>
