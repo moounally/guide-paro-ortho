@@ -23,9 +23,9 @@ export function AnimatedCounter({ value, suffix = "", duration = 2, className = 
   const displayValue = useTransform(springValue, (latest) => Math.round(latest));
 
   useEffect(() => {
-    if (inView && !hasAnimated) {
+    if (inView || hasAnimated) {
       springValue.set(value);
-      setHasAnimated(true);
+      if (!hasAnimated) setHasAnimated(true);
     }
   }, [inView, hasAnimated, springValue, value]);
 

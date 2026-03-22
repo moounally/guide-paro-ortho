@@ -1,14 +1,14 @@
 import { RiskScoreData, RiskLevel } from "@/types/clinical";
 
-export function calculateTotalScore(data: RiskScoreData): number {
+export function calculateTotalScore(data: Partial<RiskScoreData>): number {
   return (
-    parseInt(data.biotype) +
-    parseInt(data.bop) +
-    parseInt(data.ppd) +
-    parseInt(data.antecedents) +
-    parseInt(data.pi) +
-    parseInt(data.systemic) +
-    parseInt(data.compliance)
+    (parseInt(data.biotype as string) || 0) +
+    (parseInt(data.bop as string) || 0) +
+    (parseInt(data.ppd as string) || 0) +
+    (parseInt(data.antecedents as string) || 0) +
+    (parseInt(data.pi as string) || 0) +
+    (parseInt(data.systemic as string) || 0) +
+    (parseInt(data.compliance as string) || 0)
   );
 }
 
