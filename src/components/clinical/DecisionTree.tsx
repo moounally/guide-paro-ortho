@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, AlertTriangle, XOctagon } from "lucide-react";
+import { useClinicalStore } from "@/lib/store";
 
 type NodeId = 'start' | 'sain' | 'paro' | 'active' | 'stabile' | 'ortho_standard' | 'ortho_aligneurs' | 'stop' | 'mid_eval' | 'mid_ok' | 'mid_inflam' | 'mid_stop';
 
@@ -48,6 +49,24 @@ const edges = [
 
 export function DecisionTree() {
   const [activeNodes, setActiveNodes] = useState<Set<NodeId>>(new Set(['start' as NodeId]));
+  const { setDecisionNode } = useClinicalStore();
+
+  // Mettre à jour le store avec le nœud actif le plus profond
+  useEffect(() => {
+    let finalLabel = "En cours d'évaluation";
+    if (activeNodes.has('mid_stop')) finalLabel = nodes.mid_stop.label;
+    else if (activeNodes.has('mid_inflam')) finalLabel = nodes.mid_inflam.label;
+    else if (activeNodes.has('mid_ok')) finalLabel = nodes.mid_ok.label;
+    else if (activeNodes.has('stop')) finalLabel = nodes.stop.label;
+    else if (activeNodes.has('ortho_aligneurs')) finalLabel = nodes.ortho_aligneurs.label;
+    else if (activeNodes.has('ortho_standard')) finalLabel = nodes.ortho_standard.label;
+    else if (activeNodes.has('stabile')) finalLabel = nodes.stabile.label;
+    else if (activeNodes.has('active')) finalLabel = nodes.active.label;
+    else if (activeNodes.has('paro')) finalLabel = nodes.paro.label;
+    else if (activeNodes.has('sain')) finalLabel = nodes.sain.label;
+    
+    setDecisionNode(finalLabel);
+  }, [activeNodes, setDecisionNode]);
 
   const parentMap: Partial<Record<NodeId, NodeId>> = {
     sain: 'start',

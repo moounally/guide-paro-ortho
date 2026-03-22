@@ -1,4 +1,5 @@
-import { MedicalCard } from "@/components/ui/MedicalCard";
+"use client";
+"use client";
 import { RiskScoreWidget } from "@/components/clinical/RiskScoreWidget";
 import { DecisionTree } from "@/components/clinical/DecisionTree";
 import { MonitoringGrid } from "@/components/clinical/MonitoringGrid";

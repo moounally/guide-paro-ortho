@@ -9,6 +9,7 @@ import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { ClinicalBadge } from "@/components/ui/ClinicalBadge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Controller } from "react-hook-form";
+import { useClinicalStore } from "@/lib/store";
 
 const criteria = [
   {
@@ -95,12 +96,22 @@ export function RiskScoreWidget() {
 
   const watchAll = form.watch();
 
+  const { setRisk } = useClinicalStore();
+
   useEffect(() => {
     const score = calculateTotalScore(watchAll as RiskScoreData);
     if (!isNaN(score)) {
       setTotalScore(score);
+      const riskLevel = determineRiskLevel(score);
+      const details = getRiskLevelDetails(riskLevel);
+      
+      setRisk({
+        totalScore: score,
+        categorie: details.label,
+        protocole: details.protocol
+      });
     }
-  }, [watchAll]);
+  }, [watchAll, setRisk]);
 
   const riskLevel = determineRiskLevel(totalScore);
   const details = getRiskLevelDetails(riskLevel);

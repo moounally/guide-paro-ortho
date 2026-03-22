@@ -7,16 +7,7 @@ import { Label } from "@/components/ui/label";
 
 type ParamKey = 'pi' | 'gi' | 'bop' | 'ppd' | 'cal';
 
-interface RDVData {
-  id: number;
-  date: string;
-  pi: number | '';
-  gi: number | '';
-  bop: number | '';
-  ppd: number | '';
-  cal: number | '';
-  notes: string;
-}
+import { useClinicalStore, RDVData } from "@/lib/store";
 
 const paramsConfig = [
   { key: 'pi', label: 'Indice PI (%)', threshold: 20 },
@@ -27,18 +18,13 @@ const paramsConfig = [
 ];
 
 export function MonitoringGrid() {
-  const [rdvs, setRdvs] = useState<RDVData[]>([
-    { id: 1, date: '', pi: '', gi: '', bop: '', ppd: '', cal: '', notes: 'Initial' },
-    { id: 2, date: '', pi: '', gi: '', bop: '', ppd: '', cal: '', notes: 'Mois 1' },
-    { id: 3, date: '', pi: '', gi: '', bop: '', ppd: '', cal: '', notes: 'Mois 3' },
-    { id: 4, date: '', pi: '', gi: '', bop: '', ppd: '', cal: '', notes: 'Mois 6' },
-  ]);
+  const { monitoring: rdvs, setMonitoring } = useClinicalStore();
 
   const handleChange = (id: number, field: keyof RDVData, value: string) => {
-    setRdvs(prev => prev.map(rdv => rdv.id === id ? { ...rdv, [field]: value === '' ? '' : field === 'date' || field === 'notes' ? value : Number(value) } : rdv));
+    setMonitoring(rdvs.map(rdv => rdv.id === id ? { ...rdv, [field]: value === '' ? '' : field === 'date' || field === 'notes' ? value : Number(value) } : rdv));
   };
 
-  const isAlert = (key: ParamKey, value: number | '') => {
+  const isAlert = (key: ParamKey, value: string | number) => {
     if (value === '') return false;
     const config = paramsConfig.find(p => p.key === key);
     return config && Number(value) >= config.threshold;

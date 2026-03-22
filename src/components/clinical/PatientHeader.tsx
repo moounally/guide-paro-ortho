@@ -4,9 +4,11 @@ import { useState } from "react";
 import { User, Calendar, Stethoscope, FileDigit, Save } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useClinicalStore } from "@/lib/store";
 
 export function PatientHeader() {
   const [isSaved, setIsSaved] = useState(false);
+  const { patient, setPatient } = useClinicalStore();
 
   const handleSave = () => {
     setIsSaved(true);
@@ -38,28 +40,48 @@ export function PatientHeader() {
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
             <User className="w-4 h-4" /> Nom complet
           </Label>
-          <Input placeholder="Ex: Flen ElFouleni" className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input 
+            value={patient.nom}
+            onChange={(e) => setPatient({ nom: e.target.value })}
+            placeholder="Ex: Flen ElFouleni" 
+            className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" 
+          />
         </div>
         
         <div className="space-y-2">
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
             <FileDigit className="w-4 h-4" /> CIN / N° Dossier
           </Label>
-          <Input placeholder="Ex: 01234567" defaultValue="01234567" className="bg-off-white font-mono text-sm border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input 
+            value={patient.cin}
+            onChange={(e) => setPatient({ cin: e.target.value })}
+            placeholder="Ex: 01234567" 
+            className="bg-off-white font-mono text-sm border-sapphire-100 focus-visible:ring-sapphire-500" 
+          />
         </div>
 
         <div className="space-y-2">
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
             <Calendar className="w-4 h-4" /> Date de consultation
           </Label>
-          <Input type="date" defaultValue={new Date().toISOString().split('T')[0]} className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input 
+            type="date" 
+            value={patient.date}
+            onChange={(e) => setPatient({ date: e.target.value })}
+            className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" 
+          />
         </div>
 
         <div className="space-y-2">
           <Label className="text-xs font-bold text-sapphire-700 uppercase tracking-wider flex items-center gap-2">
             <Stethoscope className="w-4 h-4" /> Praticien Traitant
           </Label>
-          <Input placeholder="Pr. Dallel" className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" />
+          <Input 
+            value={patient.praticien}
+            onChange={(e) => setPatient({ praticien: e.target.value })}
+            placeholder="Pr. Dallel" 
+            className="bg-off-white border-sapphire-100 focus-visible:ring-sapphire-500" 
+          />
         </div>
       </div>
     </div>
