@@ -26,75 +26,77 @@ interface ClinicalPDFProps {
   risk: RiskData;
   decisionNode: string;
   monitoring: RDVData[];
+  t: (key: string) => string;
+  isRtl: boolean;
 }
 
-export const ClinicalPDF = ({ patient, risk, decisionNode, monitoring }: ClinicalPDFProps) => (
+export const ClinicalPDF = ({ patient, risk, decisionNode, monitoring, t, isRtl }: ClinicalPDFProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
         <Text style={styles.title}>Dossier Parodonto-Orthodontique</Text>
-        <Text style={styles.subtitle}>Évaluation du Risque & Décision Thérapeutique</Text>
+        <Text style={styles.subtitle}>{t('hero.subtitle').substring(0, 80)}...</Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>1. Identification du Patient</Text>
+        <Text style={styles.sectionTitle}>1. {t('patient.title')}</Text>
         <View style={styles.row}>
-          <Text style={styles.label}>Nom Complet :</Text>
-          <Text style={styles.value}>{patient.nom || 'Non renseigné'}</Text>
+          <Text style={styles.label}>{t('patient.name')} :</Text>
+          <Text style={styles.value}>{patient.nom || '-'}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>CIN / N° Dossier :</Text>
-          <Text style={styles.value}>{patient.cin || 'Non renseigné'}</Text>
+          <Text style={styles.label}>{t('patient.id')} :</Text>
+          <Text style={styles.value}>{patient.cin || '-'}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>Date de Consultation :</Text>
-          <Text style={styles.value}>{patient.date || 'Non renseigné'}</Text>
+          <Text style={styles.label}>{t('patient.date')} :</Text>
+          <Text style={styles.value}>{patient.date || '-'}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>Praticien Traitant :</Text>
-          <Text style={styles.value}>{patient.praticien || 'Non renseigné'}</Text>
+          <Text style={styles.label}>{t('patient.dr')} :</Text>
+          <Text style={styles.value}>{patient.praticien || '-'}</Text>
         </View>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>2. Évaluation du Risque Parodontal</Text>
+        <Text style={styles.sectionTitle}>2. {t('form.phase1')}</Text>
         <View style={styles.row}>
-          <Text style={styles.label}>Score Total Calculé :</Text>
+          <Text style={styles.label}>{t('risk.score')} :</Text>
           <Text style={styles.value}>{risk.totalScore} / 14</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>Niveau de Risque :</Text>
+          <Text style={styles.label}>Niveau / Level :</Text>
           <Text style={styles.value}>{risk.categorie}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>Protocole Recommandé :</Text>
+          <Text style={styles.label}>Protocole :</Text>
           <Text style={styles.value}>{risk.protocole}</Text>
         </View>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>3. Arbre Décisionnel & Appareillage</Text>
+        <Text style={styles.sectionTitle}>3. {t('form.phase2')}</Text>
         <View style={styles.row}>
           <Text style={styles.label}>Diagnostic & Décision :</Text>
           <Text style={styles.value}>{decisionNode}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>Validation Clinique :</Text>
-          <Text style={styles.value}>[   ] Approuvé      [   ] En attente d'examens complémentaires</Text>
+          <Text style={styles.label}>Validation :</Text>
+          <Text style={styles.value}>[   ] Approuvé      [   ] En attente d'examens</Text>
         </View>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>4. Grille de Suivi Clinique (Monitoring)</Text>
+        <Text style={styles.sectionTitle}>4. {t('form.phase3')}</Text>
         <View style={styles.table}>
           <View style={styles.tableRow}>
-            <View style={{...styles.tableColHeader, width: '20%'}}><Text style={styles.tableCellHeader}>Visite (Notes)</Text></View>
-            <View style={{...styles.tableColHeader, width: '16%'}}><Text style={styles.tableCellHeader}>Date</Text></View>
-            <View style={{...styles.tableColHeader, width: '12%'}}><Text style={styles.tableCellHeader}>PI (%)</Text></View>
+            <View style={{...styles.tableColHeader, width: '20%'}}><Text style={styles.tableCellHeader}>{t('grid.rdv')}</Text></View>
+            <View style={{...styles.tableColHeader, width: '16%'}}><Text style={styles.tableCellHeader}>{t('grid.date')}</Text></View>
+            <View style={{...styles.tableColHeader, width: '12%'}}><Text style={styles.tableCellHeader}>PI</Text></View>
             <View style={{...styles.tableColHeader, width: '12%'}}><Text style={styles.tableCellHeader}>GI</Text></View>
-            <View style={{...styles.tableColHeader, width: '12%'}}><Text style={styles.tableCellHeader}>BOP (%)</Text></View>
-            <View style={{...styles.tableColHeader, width: '14%'}}><Text style={styles.tableCellHeader}>PPD (mm)</Text></View>
-            <View style={{...styles.tableColHeader, width: '14%', borderRightWidth: 0}}><Text style={styles.tableCellHeader}>CAL (mm)</Text></View>
+            <View style={{...styles.tableColHeader, width: '12%'}}><Text style={styles.tableCellHeader}>BOP</Text></View>
+            <View style={{...styles.tableColHeader, width: '14%'}}><Text style={styles.tableCellHeader}>PPD</Text></View>
+            <View style={{...styles.tableColHeader, width: '14%', borderRightWidth: 0}}><Text style={styles.tableCellHeader}>CAL</Text></View>
           </View>
           {monitoring.map((m, i) => (
             <View style={styles.tableRow} key={i}>
@@ -111,8 +113,8 @@ export const ClinicalPDF = ({ patient, risk, decisionNode, monitoring }: Clinica
       </View>
 
       <View style={styles.footer}>
-        <Text>Document édité le {new Date().toLocaleDateString('fr-FR')} — Destiné au dossier médical</Text>
-        <Text>Guide Paro-Ortho — Ounally Z. & Dallel I. (Consultation Tunisie)</Text>
+        <Text>Document généré le {new Date().toLocaleDateString()} — Dossier Médical</Text>
+        <Text>Guide Paro-Ortho — (Z. Ounally & I. Dallel)</Text>
       </View>
     </Page>
   </Document>

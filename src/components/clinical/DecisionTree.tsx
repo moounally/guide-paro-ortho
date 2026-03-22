@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, AlertTriangle, XOctagon } from "lucide-react";
 import { useClinicalStore } from "@/lib/store";
+import { useI18n } from "@/lib/i18n";
 
 type NodeId = 'start' | 'sain' | 'paro' | 'active' | 'stabile' | 'ortho_standard' | 'ortho_aligneurs' | 'stop' | 'mid_eval' | 'mid_ok' | 'mid_inflam' | 'mid_stop';
 
@@ -14,23 +15,6 @@ interface TreeNode {
   type: 'decision' | 'endpoint' | 'action';
   level?: 'success' | 'warning' | 'danger';
 }
-
-const nodes: Record<NodeId, TreeNode> = {
-  start: { id: 'start', label: "Bilan Paro Initial", type: 'decision' },
-  sain: { id: 'sain', label: "Parodonte Sain / Gingivite", type: 'action', level: 'success' },
-  paro: { id: 'paro', label: "Parodontite", type: 'decision', level: 'warning' },
-  active: { id: 'active', label: "Active", type: 'action', level: 'danger' },
-  stabile: { id: 'stabile', label: "Stabilisée (Perte osseuse gérée)", type: 'action', level: 'warning' },
-  ortho_standard: { id: 'ortho_standard', label: "Ortho Standard + Suivi", type: 'endpoint', level: 'success' },
-  ortho_aligneurs: { id: 'ortho_aligneurs', label: "Aligneurs Fortement Recommandés", type: 'endpoint', level: 'success' },
-  stop: { id: 'stop', label: "Contre-indication", type: 'endpoint', level: 'danger' },
-  
-  // Mid-Treatment Nodes
-  mid_eval: { id: 'mid_eval', label: "Contrôle à 3/6 Mois", type: 'decision' },
-  mid_ok: { id: 'mid_ok', label: "Maintien de l'hygiène", type: 'endpoint', level: 'success' },
-  mid_inflam: { id: 'mid_inflam', label: "Poussée Inflammatoire", type: 'action', level: 'warning' },
-  mid_stop: { id: 'mid_stop', label: "Retrait Appareil + Causal", type: 'endpoint', level: 'danger' }
-};
 
 const edges = [
   { from: 'start', to: 'sain' },
@@ -48,12 +32,31 @@ const edges = [
 ];
 
 export function DecisionTree() {
+  const { t } = useI18n();
+  
+  const nodes: Record<NodeId, TreeNode> = useMemo(() => ({
+    start: { id: 'start', label: t('tree.start'), type: 'decision' },
+    sain: { id: 'sain', label: t('tree.sain'), type: 'action', level: 'success' },
+    paro: { id: 'paro', label: t('tree.paro'), type: 'decision', level: 'warning' },
+    active: { id: 'active', label: t('tree.active'), type: 'action', level: 'danger' },
+    stabile: { id: 'stabile', label: t('tree.stabile'), type: 'action', level: 'warning' },
+    ortho_standard: { id: 'ortho_standard', label: t('tree.ortho_standard'), type: 'endpoint', level: 'success' },
+    ortho_aligneurs: { id: 'ortho_aligneurs', label: t('tree.ortho_aligneurs'), type: 'endpoint', level: 'success' },
+    stop: { id: 'stop', label: t('tree.stop'), type: 'endpoint', level: 'danger' },
+    
+    // Mid-Treatment Nodes
+    mid_eval: { id: 'mid_eval', label: t('tree.mid_eval'), type: 'decision' },
+    mid_ok: { id: 'mid_ok', label: t('tree.mid_ok'), type: 'endpoint', level: 'success' },
+    mid_inflam: { id: 'mid_inflam', label: t('tree.mid_inflam'), type: 'action', level: 'warning' },
+    mid_stop: { id: 'mid_stop', label: t('tree.mid_stop'), type: 'endpoint', level: 'danger' }
+  }), [t]);
+
   const [activeNodes, setActiveNodes] = useState<Set<NodeId>>(new Set(['start' as NodeId]));
   const setDecisionNode = useClinicalStore(state => state.setDecisionNode);
 
   // Mettre à jour le store avec le nœud actif le plus profond
   useEffect(() => {
-    let finalLabel = "En cours d'évaluation";
+    let finalLabel = t('tree.evaluating');
     if (activeNodes.has('mid_stop')) finalLabel = nodes.mid_stop.label;
     else if (activeNodes.has('mid_inflam')) finalLabel = nodes.mid_inflam.label;
     else if (activeNodes.has('mid_ok')) finalLabel = nodes.mid_ok.label;
@@ -109,10 +112,10 @@ export function DecisionTree() {
     <div className="flex flex-col gap-6">
       {/* Légende */}
       <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-sapphire-900 bg-white-pure p-4 rounded-full shadow-sm border border-sapphire-100 max-w-2xl mx-auto">
-        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-sapphire-200"></div> Neutre</span>
-        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-success"></div> Favorable</span>
-        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-warning"></div> Vigilance</span>
-        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-danger"></div> C.I. Absolue</span>
+        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-sapphire-200"></div> {t('tree.legend.neutre')}</span>
+        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-success"></div> {t('tree.legend.fav')}</span>
+        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-warning"></div> {t('tree.legend.vigilance')}</span>
+        <span className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-danger"></div> {t('tree.legend.ci')}</span>
       </div>
 
       <div className="w-full max-w-5xl mx-auto p-4 md:p-8 bg-white-pure rounded-3xl border border-sapphire-100 shadow-lg overflow-hidden">

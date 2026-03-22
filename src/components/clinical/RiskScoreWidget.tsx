@@ -10,74 +10,76 @@ import { ClinicalBadge } from "@/components/ui/ClinicalBadge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Controller } from "react-hook-form";
 import { useClinicalStore } from "@/lib/store";
-
-const criteria = [
-  {
-    name: "biotype" as const,
-    label: "Biotype Parodontal",
-    options: [
-      { value: "0", label: "0 - Épais (Résistant)" },
-      { value: "1", label: "1 - Moyen" },
-      { value: "2", label: "2 - Fin / Festonné (Risque récession)" }
-    ]
-  },
-  {
-    name: "bop" as const,
-    label: "Saignement au Sondage (BOP)",
-    options: [
-      { value: "0", label: "0 - < 10% (Sain clinique)" },
-      { value: "1", label: "1 - 10% à 25% (Gingivite localisée)" },
-      { value: "2", label: "2 - > 25% (Inflammation généralisée)" }
-    ]
-  },
-  {
-    name: "ppd" as const,
-    label: "Profondeur de Poche (PPD)",
-    options: [
-      { value: "0", label: "0 - ≤ 3 mm (Sain)" },
-      { value: "1", label: "1 - 4 à 5 mm (Poches modérées/pseudo-poches)" },
-      { value: "2", label: "2 - ≥ 6 mm (Poches profondes)" }
-    ]
-  },
-  {
-    name: "antecedents" as const,
-    label: "Antécédents Parodontaux / Perte Osseuse",
-    options: [
-      { value: "0", label: "0 - Aucun (Intact)" },
-      { value: "1", label: "1 - Parodontite traitée / stabilisée" },
-      { value: "2", label: "2 - Parodontite active / Récidive" }
-    ]
-  },
-  {
-    name: "pi" as const,
-    label: "Indice de Plaque (PI)",
-    options: [
-      { value: "0", label: "0 - < 15% (Bonne hygiène)" },
-      { value: "1", label: "1 - 15% à 30% (Hygiène moyenne)" },
-      { value: "2", label: "2 - > 30% (Hygiène insuffisante)" }
-    ]
-  },
-  {
-    name: "systemic" as const,
-    label: "Facteurs Systémiques (Tabac, Diabète)",
-    options: [
-      { value: "0", label: "0 - Aucun" },
-      { value: "1", label: "1 - Tabac <10/j ou Diabète équilibré" },
-      { value: "2", label: "2 - Tabac ≥10/j ou HbA1c >7%" }
-    ]
-  },
-  {
-    name: "compliance" as const,
-    label: "Compliance / Coopération Patient",
-    options: [
-      { value: "0", label: "0 - Excellente" },
-      { value: "1", label: "1 - Moyenne (Motivation nécessaire)" },
-      { value: "2", label: "2 - Faible (Rappels fréquents requis)" }
-    ]
-  }
-];
+import { useI18n } from "@/lib/i18n";
 
 export function RiskScoreWidget() {
+  const { t } = useI18n();
+
+  const criteria = [
+    {
+      name: "biotype" as const,
+      label: t('risk.biotype'),
+      options: [
+        { value: "0", label: t('risk.bio.0') },
+        { value: "1", label: t('risk.bio.1') },
+        { value: "2", label: t('risk.bio.2') }
+      ]
+    },
+    {
+      name: "bop" as const,
+      label: t('risk.bop'),
+      options: [
+        { value: "0", label: t('risk.bop.0') },
+        { value: "1", label: t('risk.bop.1') },
+        { value: "2", label: t('risk.bop.2') }
+      ]
+    },
+    {
+      name: "ppd" as const,
+      label: t('risk.ppd'),
+      options: [
+        { value: "0", label: t('risk.ppd.0') },
+        { value: "1", label: t('risk.ppd.1') },
+        { value: "2", label: t('risk.ppd.2') }
+      ]
+    },
+    {
+      name: "antecedents" as const,
+      label: t('risk.ant'),
+      options: [
+        { value: "0", label: t('risk.ant.0') },
+        { value: "1", label: t('risk.ant.1') },
+        { value: "2", label: t('risk.ant.2') }
+      ]
+    },
+    {
+      name: "pi" as const,
+      label: t('risk.pi'),
+      options: [
+        { value: "0", label: t('risk.pi.0') },
+        { value: "1", label: t('risk.pi.1') },
+        { value: "2", label: t('risk.pi.2') }
+      ]
+    },
+    {
+      name: "systemic" as const,
+      label: t('risk.sys'),
+      options: [
+        { value: "0", label: t('risk.sys.0') },
+        { value: "1", label: t('risk.sys.1') },
+        { value: "2", label: t('risk.sys.2') }
+      ]
+    },
+    {
+      name: "compliance" as const,
+      label: t('risk.comp'),
+      options: [
+        { value: "0", label: t('risk.comp.0') },
+        { value: "1", label: t('risk.comp.1') },
+        { value: "2", label: t('risk.comp.2') }
+      ]
+    }
+  ];
   const [totalScore, setTotalScore] = useState(0);
 
   const form = useForm<RiskScoreData>({
@@ -153,7 +155,7 @@ export function RiskScoreWidget() {
 
       <div className="md:col-span-1">
         <div className="sticky top-24 bg-white-pure rounded-2xl border border-sapphire-50 shadow-sm p-6 text-center transition-all duration-300">
-          <h3 className="text-sm font-semibold uppercase text-sapphire-700 tracking-wider mb-2">Score Total</h3>
+          <h3 className="text-sm font-semibold uppercase text-sapphire-700 tracking-wider mb-2">{t('risk.score')}</h3>
           
           <div className="flex justify-center items-baseline gap-1 my-4">
             <span className="text-6xl font-display font-bold text-sapphire-900">

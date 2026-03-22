@@ -58,7 +58,7 @@ const translations = {
   }
 };
 
-type TranslationKey = keyof typeof translations.fr;
+type TranslationKey = string;
 
 interface I18nContextType {
   lang: Language;
@@ -72,8 +72,9 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined);
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Language>("fr");
 
-  const t = (key: TranslationKey): string => {
-    return translations[lang][key] || translations.fr[key] || key;
+  const t = (key: string): string => {
+    const k = key as keyof typeof translations.fr;
+    return translations[lang][k] || translations.fr[k] || key;
   };
 
   const isRtl = lang === "ar";

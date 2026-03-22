@@ -8,18 +8,20 @@ import { Label } from "@/components/ui/label";
 type ParamKey = 'pi' | 'gi' | 'bop' | 'ppd' | 'cal';
 
 import { useClinicalStore, RDVData } from "@/lib/store";
-
-const paramsConfig = [
-  { key: 'pi', label: 'Indice PI (%)', threshold: 20 },
-  { key: 'gi', label: 'Indice GI (0-3)', threshold: 1 },
-  { key: 'bop', label: 'BOP (%)', threshold: 10 },
-  { key: 'ppd', label: 'PPD (mm)', threshold: 4 },
-  { key: 'cal', label: 'CAL (mm)', threshold: 2 },
-];
+import { useI18n } from "@/lib/i18n";
 
 export function MonitoringGrid() {
+  const { t, isRtl } = useI18n();
   const rdvs = useClinicalStore(state => state.monitoring);
   const setMonitoring = useClinicalStore(state => state.setMonitoring);
+
+  const paramsConfig = [
+    { key: 'pi', label: t('grid.pi'), threshold: 20 },
+    { key: 'gi', label: t('grid.gi'), threshold: 1 },
+    { key: 'bop', label: t('grid.bop'), threshold: 10 },
+    { key: 'ppd', label: t('grid.ppd'), threshold: 4 },
+    { key: 'cal', label: t('grid.cal'), threshold: 2 },
+  ];
 
   const handleChange = (id: number, field: keyof RDVData, value: string) => {
     setMonitoring(rdvs.map(rdv => rdv.id === id ? { ...rdv, [field]: value === '' ? '' : field === 'date' || field === 'notes' ? value : Number(value) } : rdv));
@@ -37,10 +39,10 @@ export function MonitoringGrid() {
     if (isAlert('bop', rdv.bop)) alerts++;
     if (isAlert('ppd', rdv.ppd)) alerts++;
     
-    if (alerts >= 2 || isAlert('cal', rdv.cal)) return { text: "⚠️ ALERTE : Arrêt Ortho + Adresser Parodontiste", color: "text-danger" };
-    if (alerts === 1) return { text: "⚡ VIGILANCE : Renforcer Motivation Hygiène", color: "text-warning" };
-    if (rdv.pi !== '' && rdv.bop !== '') return { text: "✅ PARAMÈTRES CONTRÔLÉS : Continuer", color: "text-success" };
-    return { text: "En attente de données", color: "text-neutral/50" };
+    if (alerts >= 2 || isAlert('cal', rdv.cal)) return { text: t('grid.alert.stop'), color: "text-danger" };
+    if (alerts === 1) return { text: t('grid.alert.warn'), color: "text-warning" };
+    if (rdv.pi !== '' && rdv.bop !== '') return { text: t('grid.alert.ok'), color: "text-success" };
+    return { text: t('grid.waiting'), color: "text-neutral/50" };
   };
 
   return (
@@ -50,14 +52,14 @@ export function MonitoringGrid() {
           <table className="w-full text-left border-collapse">
           <thead>
             <tr>
-              <th className="p-3 border-b text-sapphire-900 font-semibold w-24">RDV</th>
-              <th className="p-4 border-b-2 border-sapphire-100 text-sapphire-900 font-bold w-36 uppercase text-xs tracking-wider">Date</th>
+              <th className="p-3 border-b text-sapphire-900 font-semibold w-24">{t('grid.rdv')}</th>
+              <th className="p-4 border-b-2 border-sapphire-100 text-sapphire-900 font-bold w-36 uppercase text-xs tracking-wider">{t('grid.date')}</th>
               {paramsConfig.map(p => (
                 <th key={p.key} className="p-4 border-b-2 border-sapphire-100 text-sapphire-900 font-bold w-24 uppercase text-xs tracking-wider" title={`Alerte si ≥ ${p.threshold}`}>
                   {p.label}
                 </th>
               ))}
-              <th className="p-4 border-b-2 border-sapphire-100 text-sapphire-900 font-bold flex-1 uppercase text-xs tracking-wider">Escalade / Notes</th>
+              <th className="p-4 border-b-2 border-sapphire-100 text-sapphire-900 font-bold flex-1 uppercase text-xs tracking-wider">{t('grid.notes')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-sapphire-50/50">
@@ -93,7 +95,7 @@ export function MonitoringGrid() {
                         {escalade.text}
                       </span>
                       <Input 
-                        placeholder="Notes cliniques spécifiques..." 
+                        placeholder={t('grid.ph')} 
                         value={rdv.notes} 
                         onChange={(e) => handleChange(rdv.id, 'notes', e.target.value)}
                         className="h-9 text-sm italic bg-off-white/50 border-sapphire-50/50 focus-visible:bg-white-pure mt-1"
@@ -112,7 +114,7 @@ export function MonitoringGrid() {
         <span className="px-2 py-1 bg-sapphire-50 rounded text-sapphire-800">GI ≥ 1</span>
         <span className="px-2 py-1 bg-sapphire-50 rounded text-sapphire-800">BOP ≥ 10%</span>
         <span className="px-2 py-1 bg-sapphire-50 rounded text-sapphire-800">PPD ≥ 4mm</span>
-        <span className="px-2 py-1 bg-danger/10 border border-danger/20 rounded text-danger-dark font-bold">CAL ≥ 2mm (Arrêt)</span>
+        <span className="px-2 py-1 bg-danger/10 border border-danger/20 rounded text-danger-dark font-bold">{t('grid.footer.stop')}</span>
       </div>
     </div>
   );
