@@ -118,7 +118,7 @@ export function RiskScoreWidget() {
                 render={({ field }) => (
                   <div className="space-y-2">
                     <label className="text-sm text-sapphire-900 font-semibold block">{c.label}</label>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="bg-white-pure border-sapphire-50 focus:ring-sapphire-500 w-full">
                         <SelectValue placeholder="Sélectionner..." />
                       </SelectTrigger>

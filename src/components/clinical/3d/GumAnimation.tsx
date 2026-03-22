@@ -73,20 +73,29 @@ export function GumAnimation() {
             </h4>
             <div className="flex flex-col gap-2">
               <button 
-                onClick={() => { setDevice('aligner'); setHealthState('healthy'); }}
+                onClick={() => setDevice('aligner')}
                 className={`px-4 py-3 rounded-xl border text-left flex items-center justify-between transition-all ${device === 'aligner' ? 'border-sapphire-500 bg-sapphire-50/50 shadow-sm' : 'border-transparent bg-white-pure hover:border-sapphire-200'}`}
               >
                 <span className="font-semibold text-sapphire-900 text-sm">Aligneurs Transparents</span>
                 {device === 'aligner' && <Eye className="w-4 h-4 text-sapphire-500" />}
               </button>
               <button 
-                onClick={() => { setDevice('bracket'); setHealthState('inflamed'); }} // Force inflammation when clicking brackets for demo
-                className={`px-4 py-3 rounded-xl border text-left flex items-center justify-between transition-all ${device === 'bracket' ? 'border-danger/50 bg-danger/5 shadow-sm' : 'border-transparent bg-white-pure hover:border-danger/20'}`}
+                onClick={() => setDevice('bracket')}
+                className={`px-4 py-3 rounded-xl border text-left flex items-center justify-between transition-all ${device === 'bracket' ? 'border-sapphire-500 bg-sapphire-50/50 shadow-sm' : 'border-transparent bg-white-pure hover:border-sapphire-200'}`}
               >
                 <span className="font-semibold text-sapphire-900 text-sm">Système Multi-attaches</span>
-                {device === 'bracket' && <Eye className="w-4 h-4 text-danger" />}
+                {device === 'bracket' && <Eye className="w-4 h-4 text-sapphire-500" />}
               </button>
             </div>
+          </div>
+          
+          <div className="pt-4 border-t border-sapphire-50/50">
+            <button
+               onClick={() => { setDevice('aligner'); setHealthState('healthy'); }}
+               className="w-full py-3 bg-white-pure hover:bg-sapphire-50 border border-sapphire-100 text-sapphire-900 text-sm font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+            >
+               Remettre à zéro
+            </button>
           </div>
         </div>
       </div>

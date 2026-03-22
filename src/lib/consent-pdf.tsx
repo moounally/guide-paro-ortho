@@ -106,7 +106,7 @@ export const ConsentementPDF = () => (
       </View>
 
       <View style={styles.footer}>
-        <Text>Document validé médicalement en référence à Ounally & Dalloul, 2026.</Text>
+        <Text>Document validé médicalement en référence à Ounally & Dallel, 2026.</Text>
         <Text>Université de Monastir, Faculté de Médecine Dentaire</Text>
       </View>
     </Page>

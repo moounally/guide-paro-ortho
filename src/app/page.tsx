@@ -138,7 +138,7 @@ export default function Home() {
             {[
               { 
                 title: "Approche Evidence-Based", 
-                desc: "Intégrez les conclusions de la thèse Ounally & Dalloul (2026) directement dans votre flux de travail clinique quotidien pour des décisions éclairées.",
+                desc: "Intégrez les conclusions de la thèse Ounally & Dallel (2026) directement dans votre flux de travail clinique quotidien pour des décisions éclairées.",
                 icon: FileText
               },
               { 
