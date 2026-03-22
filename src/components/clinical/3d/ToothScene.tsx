@@ -159,9 +159,9 @@ interface ToothSceneProps {
 export function ToothScene({ state = 'healthy', isAligner = true }: ToothSceneProps) {
   return (
     <div className="w-full h-full min-h-[400px] bg-gradient-to-b from-sky-50 to-white relative rounded-2xl overflow-hidden shadow-inner border border-sapphire-100/50">
-      <Canvas camera={{ position: [0, 2.5, 6.5], fov: 35 }} shadows>
+      <Canvas camera={{ position: [0, 3, 8.5], fov: 42 }} shadows>
         <ambientLight intensity={0.7} />
-        <directionalLight position={[10, 10, 5]} intensity={1.8} castShadow shadow-mapSize={[2048, 2048]} />
+        <directionalLight position={[10, 10, 5]} intensity={1.8} castShadow shadow-mapSize={[2048, 2048]} shadow-normalBias={0.06} shadow-bias={-0.0001} />
         <directionalLight position={[-10, 5, -5]} intensity={0.6} />
         <Environment preset="city" />
         
@@ -172,7 +172,7 @@ export function ToothScene({ state = 'healthy', isAligner = true }: ToothScenePr
         </Float>
         
         <ContactShadows position={[0, -1.8, 0]} opacity={0.6} scale={12} blur={2.5} far={4} color="#041E4D" />
-        <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 1.5} minPolarAngle={Math.PI / 4} autoRotate autoRotateSpeed={0.8} />
+        <OrbitControls enableZoom={false} enablePan={false} maxPolarAngle={Math.PI / 1.5} minPolarAngle={Math.PI / 4} autoRotate autoRotateSpeed={0.8} />
       </Canvas>
     </div>
   );
