@@ -18,7 +18,8 @@ const paramsConfig = [
 ];
 
 export function MonitoringGrid() {
-  const { monitoring: rdvs, setMonitoring } = useClinicalStore();
+  const rdvs = useClinicalStore(state => state.monitoring);
+  const setMonitoring = useClinicalStore(state => state.setMonitoring);
 
   const handleChange = (id: number, field: keyof RDVData, value: string) => {
     setMonitoring(rdvs.map(rdv => rdv.id === id ? { ...rdv, [field]: value === '' ? '' : field === 'date' || field === 'notes' ? value : Number(value) } : rdv));

@@ -49,7 +49,7 @@ const edges = [
 
 export function DecisionTree() {
   const [activeNodes, setActiveNodes] = useState<Set<NodeId>>(new Set(['start' as NodeId]));
-  const { setDecisionNode } = useClinicalStore();
+  const setDecisionNode = useClinicalStore(state => state.setDecisionNode);
 
   // Mettre à jour le store avec le nœud actif le plus profond
   useEffect(() => {

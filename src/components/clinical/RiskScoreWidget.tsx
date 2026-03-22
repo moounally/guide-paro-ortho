@@ -94,12 +94,16 @@ export function RiskScoreWidget() {
     mode: "onChange"
   });
 
+  const setRisk = useClinicalStore(state => state.setRisk);
   const watchAll = form.watch();
 
-  const { setRisk } = useClinicalStore();
+  // Stabiliser la référence pour éviter les boucles de rendu
+  const watchValuesString = JSON.stringify(watchAll);
 
   useEffect(() => {
-    const score = calculateTotalScore(watchAll as RiskScoreData);
+    const data = JSON.parse(watchValuesString) as RiskScoreData;
+    const score = calculateTotalScore(data);
+    
     if (!isNaN(score)) {
       setTotalScore(score);
       const riskLevel = determineRiskLevel(score);
@@ -111,7 +115,7 @@ export function RiskScoreWidget() {
         protocole: details.protocol
       });
     }
-  }, [watchAll, setRisk]);
+  }, [watchValuesString, setRisk]);
 
   const riskLevel = determineRiskLevel(totalScore);
   const details = getRiskLevelDetails(riskLevel);

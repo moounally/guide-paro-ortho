@@ -8,7 +8,8 @@ import { useClinicalStore } from "@/lib/store";
 
 export function PatientHeader() {
   const [isSaved, setIsSaved] = useState(false);
-  const { patient, setPatient } = useClinicalStore();
+  const patient = useClinicalStore(state => state.patient);
+  const setPatient = useClinicalStore(state => state.setPatient);
 
   const handleSave = () => {
     setIsSaved(true);
