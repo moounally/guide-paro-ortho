@@ -26,7 +26,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 
 export const metadata: Metadata = {
   title: "Guide Parodonto-Orthodontique | Zeineb Ounally & Pr. Ines Dallel",
-  description: "Impact des dispositifs orthodontiques sur la santé parodontale : aligneurs transparents versus systèmes multi-attachés. Revue systématique PRISMA.",
+  description: "Impact des dispositifs orthodontiques sur la santé parodontale : aligneurs transparents versus systèmes multi-attaches. Revue systématique PRISMA.",
   openGraph: {
     title: "Guide Parodonto-Orthodontique | Tunisie 2026",
     description: "Plateforme clinique d'évaluation et de décision en parodontologie orthodontique.",

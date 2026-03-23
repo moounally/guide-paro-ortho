@@ -25,7 +25,7 @@ export function getRiskLevelDetails(level: RiskLevel) {
         label: "Risque Faible",
         color: "success",
         protocol: "Protocole Standard ONDT",
-        text: "Traitements multi-attachés ou aligneurs possibles après prophylaxie standard."
+        text: "Traitements multi-attaches ou aligneurs possibles après prophylaxie standard."
       };
     case 'MODERATE':
       return {

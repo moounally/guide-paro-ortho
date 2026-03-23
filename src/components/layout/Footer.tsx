@@ -5,7 +5,7 @@ export function Footer() {
         <div className="mb-8 md:mb-0 md:max-w-2xl">
           <div className="font-display italic text-gold-300 border-l-2 border-gold-500 pl-6 text-sm leading-relaxed space-y-2">
             <p>
-              « Ce guide clinique est basé sur : Ounally Z. & Dallel I. (2026). Impact des dispositifs orthodontiques sur la santé parodontale : aligneurs transparents versus systèmes multi-attachés. Revue systématique PRISMA, 22 études incluses. Thèse de doctorat, Université de Monastir, Tunisie. »
+              « Ce guide clinique est basé sur : Ounally Z. & Dallel I. (2026). Impact des dispositifs orthodontiques sur la santé parodontale : aligneurs transparents versus systèmes multi-attaches. Revue systématique PRISMA, 22 études incluses. Thèse de doctorat, Université de Monastir, Tunisie. »
             </p>
           </div>
         </div>

@@ -122,7 +122,7 @@ export default function Home() {
                 <Focus className="w-7 h-7" />
               </div>
               <h3 className="text-2xl font-bold text-sapphire-900">Arbre Décisionnel</h3>
-              <p className="text-sapphire-700/80 leading-relaxed">Algorithme visuel et interactif guidant le choix entre Aligneurs Transparents et Systèmes Multi-Attachés basé sur l'inflammation.</p>
+              <p className="text-sapphire-700/80 leading-relaxed">Algorithme visuel et interactif guidant le choix entre Aligneurs Transparents et Systèmes Multi-attaches basé sur l'inflammation.</p>
             </div>
 
             <div className="bg-white-pure p-8 rounded-3xl shadow-sm border border-sapphire-100 hover:shadow-xl transition-shadow flex flex-col gap-4 group">

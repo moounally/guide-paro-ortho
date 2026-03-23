@@ -30,7 +30,7 @@ export function ForestPlot() {
         Forest Plot : Impact sur l'Indice de Plaque (PI)
       </h3>
       <p className="text-center text-sm text-neutral mb-8">
-        Différence de Moyenne (MD) : Aligneurs vs Multi-attachés. <br/>
+        Différence de Moyenne (MD) : Aligneurs vs Multi-attaches. <br/>
         <span className="italic text-xs block mt-1">(Les valeurs à gauche de 0 favorisent les Aligneurs)</span>
       </p>
 
